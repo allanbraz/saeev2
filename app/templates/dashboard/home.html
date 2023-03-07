@@ -1,0 +1,90 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro e Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/stylepage1.css' %}">
+
+</head>
+<body>
+
+
+    {% if request.user.is_authenticated %}
+        <h1>Área Restrita</h1>
+        Bem vindo <br>
+        <a href="/logouts/">Sair</a>
+
+        <div class="card">
+            <div class="card-body">
+                <h4> EDIFICAÇÕES CADASTRADAS</h4>
+            <a href = "/edifadd"</a><button class="btn btn-success mt-4" >Adicionar edificação</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                                <th>Nome da edificação</th>
+                                <th>Data de início da análise</th>
+                                <th>Quantidade de pisos</th>
+                                <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>NIT</td>
+                        <td>25/06/2022</td>
+                        <td>4</td>
+                        <td>
+                            <button class="btn btn-success mt-4">Detalhar</button>
+                            <button class="btn btn-warning mt-4">Editar</button>
+                            <button class="btn btn-danger mt-4">Excluir</button>
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        {% if perms.admin.can_edit_users %}
+            <p>Como você tem permissão de editar usuários você pode ver isso!</p>
+        {% endif %}
+
+        {% if perms.admin.can_delete_posts %}
+            <a href="#">Deletar usuários</a>
+        {% endif %}
+    {% else %}
+        Você não tem acesso a essa área!
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="{% static 'js/javascript.js' %}"></script>
+</body>
+</html>

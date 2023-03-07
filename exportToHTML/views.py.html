@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>views.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #cc7832;}
+.s2 { color: #808080;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+views.py</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">from </span><span class="s0">django.http </span><span class="s1">import </span><span class="s0">HttpResponse</span>
+<span class="s1">from </span><span class="s0">django.contrib.auth.models </span><span class="s1">import </span><span class="s0">User</span>
+<span class="s1">from </span><span class="s0">django.shortcuts </span><span class="s1">import </span><span class="s0">render</span><span class="s1">, </span><span class="s0">redirect</span>
+<span class="s1">from </span><span class="s0">django.contrib.auth </span><span class="s1">import </span><span class="s0">authenticate</span><span class="s1">, </span><span class="s0">login</span><span class="s1">, </span><span class="s0">logout</span>
+<span class="s1">from </span><span class="s0">django.views.generic.edit </span><span class="s1">import </span><span class="s0">CreateView</span>
+<span class="s1">from </span><span class="s0">django.urls </span><span class="s1">import </span><span class="s0">reverse_lazy</span>
+<span class="s1">from </span><span class="s0">app.models </span><span class="s1">import </span><span class="s0">Detalhes</span>
+<span class="s1">from </span><span class="s0">app.forms </span><span class="s1">import </span><span class="s0">DetalhesForm</span>
+<span class="s1">from </span><span class="s0">app.forms </span><span class="s1">import </span><span class="s0">DadosenvoltoriaForm</span>
+
+
+<span class="s2"># Create your views here.</span>
+<span class="s1">def </span><span class="s0">home(request):</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'login.html'</span><span class="s0">)</span>
+
+<span class="s1">def </span><span class="s0">detalhes(request):</span>
+    <span class="s0">lista = Detalhes.objects.all()</span>
+    <span class="s0">context2 = {</span>
+        <span class="s3">'lista'</span><span class="s0">: lista</span>
+    <span class="s0">}</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'index.html'</span><span class="s1">, </span><span class="s0">context2)</span>
+
+
+<span class="s1">def </span><span class="s0">create(request):</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'create.html'</span><span class="s0">)</span>
+
+
+<span class="s1">def </span><span class="s0">edifadd(request):</span>
+    <span class="s0">form = DetalhesForm(request.POST </span><span class="s1">or None</span><span class="s0">)</span>
+    <span class="s1">if </span><span class="s0">request.POST:</span>
+        <span class="s1">if </span><span class="s0">form.is_valid():</span>
+            <span class="s0">form.save()</span>
+
+    <span class="s0">data = {}</span>
+    <span class="s0">data[</span><span class="s3">'msg'</span><span class="s0">] = </span><span class="s3">'Dados de envoltória cadastrados com sucesso'</span>
+    <span class="s0">data[</span><span class="s3">'class'</span><span class="s0">] = </span><span class="s3">'alert-success'</span>
+
+    <span class="s0">context = {</span>
+        <span class="s3">'form'</span><span class="s0">: form</span>
+    <span class="s0">}</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">, </span><span class="s3">'addedif.html'</span><span class="s1">, </span><span class="s0">context)</span>
+
+
+
+<span class="s1">def </span><span class="s0">envoltoria(request):</span>
+    <span class="s0">form = DadosenvoltoriaForm(request.POST </span><span class="s1">or None</span><span class="s0">)</span>
+
+    <span class="s1">if </span><span class="s0">request.POST:</span>
+        <span class="s1">if </span><span class="s0">form.is_valid():</span>
+            <span class="s0">form.save()</span>
+
+    <span class="s0">context = {</span>
+        <span class="s3">'form'</span><span class="s0">: form</span>
+    <span class="s0">}</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">, </span><span class="s3">'envoltadd.html'</span><span class="s1">, </span><span class="s0">context)</span>
+
+
+
+
+<span class="s1">class </span><span class="s0">DetalhesCreate(CreateView):</span>
+    <span class="s0">model = Detalhes</span>
+    <span class="s0">fields = [</span><span class="s3">'nome'</span><span class="s1">,</span><span class="s3">'data_inicio'</span><span class="s1">,</span><span class="s3">'numero_pisos'</span><span class="s0">]</span>
+    <span class="s0">template_name = </span><span class="s3">'index.html'</span>
+    <span class="s0">template_name_suffix = </span><span class="s3">'_update_form'</span>
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="s2">#Inserção dos dados dos usuários no banco</span>
+<span class="s1">def </span><span class="s0">store(request):</span>
+    <span class="s0">data = {}</span>
+    <span class="s1">if</span><span class="s0">(request.POST[</span><span class="s3">'password'</span><span class="s0">] != request.POST[</span><span class="s3">'password-conf'</span><span class="s0">]):</span>
+        <span class="s0">data[</span><span class="s3">'msg'</span><span class="s0">] = </span><span class="s3">'Senha e confirmação de senha diferentes!'</span>
+        <span class="s0">data[</span><span class="s3">'class'</span><span class="s0">] = </span><span class="s3">'alert-danger'</span>
+    <span class="s1">else</span><span class="s0">:</span>
+        <span class="s0">user = User.objects.create_user(request.POST[</span><span class="s3">'user'</span><span class="s0">]</span><span class="s1">, </span><span class="s0">request.POST[</span><span class="s3">'email'</span><span class="s0">]</span><span class="s1">, </span><span class="s0">request.POST[</span><span class="s3">'password'</span><span class="s0">])</span>
+        <span class="s0">user.first_name = request.POST[</span><span class="s3">'name'</span><span class="s0">]</span>
+        <span class="s0">user.save()</span>
+        <span class="s0">user.user_permissions.add(</span><span class="s4">27</span><span class="s0">)</span>
+        <span class="s0">data[</span><span class="s3">'msg'</span><span class="s0">] = </span><span class="s3">'Usuário cadastrado com sucesso!'</span>
+        <span class="s0">data[</span><span class="s3">'class'</span><span class="s0">] = </span><span class="s3">'alert-success'</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'register.html'</span><span class="s1">,</span><span class="s0">data)</span>
+
+<span class="s2">#Formulário do painel de login</span>
+<span class="s1">def </span><span class="s0">painel(request):</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'painel.html'</span><span class="s0">)</span>
+
+<span class="s2">#Processa o login</span>
+<span class="s1">def </span><span class="s0">dologin(request):</span>
+    <span class="s0">data = {}</span>
+    <span class="s0">user = authenticate(username=request.POST[</span><span class="s3">'user'</span><span class="s0">]</span><span class="s1">, </span><span class="s0">password=request.POST[</span><span class="s3">'password'</span><span class="s0">])</span>
+    <span class="s1">if </span><span class="s0">user </span><span class="s1">is not None</span><span class="s0">:</span>
+        <span class="s0">login(request</span><span class="s1">, </span><span class="s0">user)</span>
+        <span class="s1">return </span><span class="s0">redirect(</span><span class="s3">'/index/'</span><span class="s0">)</span>
+    <span class="s1">else</span><span class="s0">:</span>
+        <span class="s0">data[</span><span class="s3">'msg'</span><span class="s0">] = </span><span class="s3">'Usuário ou Senha incorretos.'</span>
+        <span class="s0">data[</span><span class="s3">'class'</span><span class="s0">] = </span><span class="s3">'alert-danger'</span>
+        <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'login.html'</span><span class="s1">,</span><span class="s0">data)</span>
+
+<span class="s2">#Página inicial do dashboard</span>
+<span class="s1">def </span><span class="s0">dashboard(request):</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'dashboard/home.html'</span><span class="s0">)</span>
+
+<span class="s1">def </span><span class="s0">cadastro(request):</span>
+    <span class="s1">return </span><span class="s0">render(request</span><span class="s1">,</span><span class="s3">'dashboard/home.html'</span><span class="s0">)</span>
+
+<span class="s2">#Logout do sistema</span>
+<span class="s1">def </span><span class="s0">logouts(request):</span>
+    <span class="s0">logout(request)</span>
+    <span class="s1">return </span><span class="s0">redirect(</span><span class="s3">'/login/'</span><span class="s0">)</span>
+
+<span class="s2">#Alterar a senha</span>
+<span class="s1">def </span><span class="s0">changePassword(request):</span>
+    <span class="s0">user = User.objects.get(email=request.user.email)</span>
+    <span class="s0">user.set_password(</span><span class="s3">'123'</span><span class="s0">)</span>
+    <span class="s0">user.save()</span>
+    <span class="s0">logout(request)</span>
+    <span class="s1">return </span><span class="s0">redirect(</span><span class="s3">'/painel/'</span><span class="s0">)</span>
+
+</pre>
+</body>
+</html>

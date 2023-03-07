@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>models.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+models.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">django.db </span><span class="s0">import </span><span class="s1">models</span>
+
+<span class="s2"># Create your models here.</span>
+
+<span class="s0">class </span><span class="s1">Detalhes(models.Model):</span>
+    <span class="s1">nome = models.CharField(max_length=</span><span class="s3">240</span><span class="s1">)</span>
+    <span class="s1">data_inicio = models.CharField(max_length=</span><span class="s3">20</span><span class="s1">)</span>
+    <span class="s1">numero_pisos = models.PositiveIntegerField()</span>
+
+<span class="s0">class </span><span class="s1">Dadosenvoltoria(models.Model):</span>
+    <span class="s1">zb = models.PositiveIntegerField()</span>
+    <span class="s1">apcob = models.FloatField()</span>
+    <span class="s1">atot = models.FloatField()</span>
+    <span class="s1">aenv = models.FloatField()</span>
+    <span class="s1">vtot = models.FloatField()</span>
+    <span class="s1">somaabertura = models.FloatField()</span>
+    <span class="s1">atotfachada = models.FloatField()</span>
+    <span class="s1">fsvidro = models.FloatField()</span>
+    <span class="s1">avs = models.FloatField()</span>
+    <span class="s1">ahs = models.FloatField()</span>
+    <span class="s1">ape = models.FloatField()</span>
+    <span class="s1">ucobncond = models.FloatField()</span>
+    <span class="s1">ucobcond = models.FloatField()</span>
+    <span class="s1">upar = models.FloatField()</span>
+    <span class="s1">abscob = models.FloatField()</span>
+    <span class="s1">absrev = models.FloatField()</span>
+    <span class="s1">paz = models.FloatField()</span>
+    <span class="s1">fspaz = models.FloatField()</span>
+</pre>
+</body>
+</html>

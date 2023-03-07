@@ -1,0 +1,28 @@
+@import 'reset.css'
+
+.login{
+height:100%;
+width:100%;
+display:flex;
+flex-direction:row;
+
+}
+
+.loginform{
+    background-color: white;
+    height:100%;
+    width:50%;
+    max-width:600px;
+    align-items: center;
+    justify-content: center;
+    max-width:600px;
+    padding:120px;
+
+}
+
+.log2{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+

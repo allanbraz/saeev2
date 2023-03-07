@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SAEE V2 - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href={% static "fontawesome-free/css/all.min.css" %} rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href={% static "css/sb-admin-2.min.css" %} rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 py-98 px-98">
+                                <img class="img-fluid rounded-circle" src={% static "\saee1.png" %} alt="..." />
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Bem vindo ao SAEE</h1>
+                                    </div>
+                                    <div class="log2">
+
+
+
+    <div class="loginform" >
+        <div class="col-12 mt-12 m-auto text-gray-900">
+       <form name="formPainel" id="formPainel" method="post" action="/dologin/">
+
+            {% if msg %}
+                <div class="alert {{class}}">
+                    {{msg}}
+                </div>
+            {% endif %}
+                <h1>Login</h1>
+            {% csrf_token %}
+            <label>Usuário</label>
+            <input class="form-control mt-12" type="text" name="user" id="user" placeholder="Nome do Usuário:">
+            <label>Senha</label>
+            <input class="form-control mt-12" type="password" name="password" id="password" placeholder="Senha:">
+            <input class="btn btn-dark mt-4" type="submit" value="Entrar">
+        </form>
+
+            </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+    <script src="{% static 'js/javascript.js' %}"></script>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Esqueceu a senha?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/register/">Cadastro de usuários</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src={% static "jquery/jquery.min.js" %}>  </script>
+    <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}> </script>
+
+    <!-- Core plugin JavaScript-->
+    <script src={% static "jquery-easing/jquery.easing.min.js" %}> </script>
+
+    <!-- Custom scripts for all pages-->
+    <script src={% static "js/sb-admin-2.min.js" %}> </script>
+
+</body>
+
+</html>
